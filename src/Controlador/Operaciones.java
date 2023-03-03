@@ -10,25 +10,25 @@ package Controlador;
  */
 public class Operaciones {
     
-    public String Sumar(int numero1, int numero2){
-        int resultado = numero1+numero2;
+    public String Sumar(float numero1, float numero2){
+        float resultado = numero1+numero2;
         return resultado+"";
         //return String.valueOf(resultado);
     }
     
-    public String Restar(int numero1, int numero2){
-        int resultado = numero1-numero2;
+    public String Restar(float numero1, float numero2){
+        float resultado = numero1-numero2;
         return resultado+"";
         //return String.valueOf(resultado);
     }
     
-    public String Multiplicar(int numero1, int numero2){
-        int resultado = numero1*numero2;
+    public String Multiplicar(float numero1, float numero2){
+        float resultado = numero1*numero2;
         return resultado+"";
         //return String.valueOf(resultado);
     }
     
-    public String Dividir(int numero1, int numero2){
+    public String Dividir(float numero1, float numero2){
         float resultado = numero1/numero2;
         return resultado+"";
         //return String.valueOf(resultado);

@@ -13,7 +13,8 @@ import Controlador.Operaciones;
 public class Calculadora extends javax.swing.JFrame {
 
     private Operaciones operaciones;
-    private int numero1;
+    private float numero1;
+    
     
     /**
      * Creates new form Calculadora
@@ -21,6 +22,8 @@ public class Calculadora extends javax.swing.JFrame {
     public Calculadora() {
         initComponents();
         operaciones=new Operaciones();
+        
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -49,12 +52,14 @@ public class Calculadora extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jButton17 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         pantalla.setFont(new java.awt.Font("Courier New", 1, 48)); // NOI18N
         pantalla.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -138,6 +143,11 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel2.add(jButton9);
 
         jButton10.setText(".");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton10);
 
         jButton11.setText("0");
@@ -160,10 +170,28 @@ public class Calculadora extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.GridLayout(0, 1));
 
+        jButton17.setLabel("C");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton17);
+
         jButton13.setText("*");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton13);
 
         jButton14.setText("/");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton14);
 
         jButton15.setText("+");
@@ -175,6 +203,11 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel3.add(jButton15);
 
         jButton16.setText("-");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton16);
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.LINE_END);
@@ -259,11 +292,57 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        int numero2= Integer.parseInt(pantalla.getText());
+        float numero2= Integer.parseInt(pantalla.getText());
+        
         pantalla.setText(operaciones.Sumar(numero1, numero2));
+        pantalla.setText(operaciones.Restar(numero1, numero2));
+        pantalla.setText(operaciones.Multiplicar(numero1, numero2));
+        pantalla.setText(operaciones.Dividir(numero1, numero2));
         
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        this.pantalla.setText("");
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        if (!(this.pantalla.getText().contains("."))) {
+            this.pantalla.setText(this.pantalla.getText()+".");
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        numero1 = Integer.parseInt(pantalla.getText());
+        pantalla.setText("0");
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        numero1 = Integer.parseInt(pantalla.getText());
+        pantalla.setText("0");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        numero1 = Integer.parseInt(pantalla.getText());
+        pantalla.setText("0");
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    
+    public String sinCero(float resultado){
+        
+        String retorno="";
+        retorno = Float.toString(resultado); 
+        
+        if (resultado%1==0) {
+            retorno= retorno.substring(0 ,retorno.length()-2);
+        }
+        return retorno;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -308,6 +387,7 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -321,4 +401,8 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel pantalla;
     // End of variables declaration//GEN-END:variables
+
+    private void setLocationRelativeTo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
